@@ -1,0 +1,34 @@
+getAddresses:
+  handler: src/lambdas/address/getAddresses.getAddresses
+  events:
+    - http:
+        path: addresses
+        method: get
+
+getAddress:
+  handler: src/lambdas/address/getAddress.getAddress
+  events:
+    - http:
+        path: addresses/{id}
+        method: get
+
+createAddress:
+  handler: src/lambdas/address/createAddress.createAddress
+  events:
+    - http:
+        path: addresses
+        method: post
+
+updateAddress:
+  handler: src/lambdas/address/updateAddress.updateAddress
+  events:
+    - http:
+        path: addresses/{id}
+        method: put
+
+deleteAddress:
+  handler: src/lambdas/address/deleteAddress.deleteAddress
+  events:
+    - http:
+        path: addresses/{id}
+        method: delete

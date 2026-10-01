@@ -1,0 +1,34 @@
+getCategories:
+  handler: src/lambdas/category/getCategories.getCategories
+  events:
+    - http:
+        path: categories
+        method: get
+
+getCategory:
+  handler: src/lambdas/category/getCategory.getCategory
+  events:
+    - http:
+        path: categories/{id}
+        method: get
+
+createCategory:
+  handler: src/lambdas/category/createCategory.createCategory
+  events:
+    - http:
+        path: categories
+        method: post
+
+updateCategory:
+  handler: src/lambdas/category/updateCategory.updateCategory
+  events:
+    - http:
+        path: categories/{id}
+        method: put
+
+deleteCategory:
+  handler: src/lambdas/category/deleteCategory.deleteCategory
+  events:
+    - http:
+        path: categories/{id}
+        method: delete

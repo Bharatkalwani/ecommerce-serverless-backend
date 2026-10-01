@@ -1,0 +1,54 @@
+service: ecommerce-api
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+
+  environment:
+    SQS_ORDER_EMAIL_QUEUE_URL: ${env:SQS_ORDER_EMAIL_QUEUE_URL}
+    SES_FROM_EMAIL: ${env:SES_FROM_EMAIL}
+
+  iam:
+    role:
+      statements:
+
+        # Permission for Lambda to send messages to SQS
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+          Resource:
+            Fn::GetAtt:
+              - OrderEmailQueue
+              - Arn
+
+        # Permission for Lambda to send emails using SES
+        - Effect: Allow
+          Action:
+            - ses:SendEmail
+          Resource: "*"
+
+functions:
+  - ${file(serverless/functions/product.yml)}
+  - ${file(serverless/functions/user.yml)}
+  - ${file(serverless/functions/category.yml)}
+  - ${file(serverless/functions/cart.yml)}
+  - ${file(serverless/functions/address.yml)}
+  - ${file(serverless/functions/order.yml)}
+  - ${file(serverless/functions/email.yml)}
+
+resources:
+  Resources:
+
+    OrderEmailQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ecommerce-order-email-queue
+        VisibilityTimeout: 60
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 4000

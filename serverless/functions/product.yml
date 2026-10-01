@@ -1,0 +1,41 @@
+getProducts:
+  handler: src/lambdas/product/getProducts.getProducts
+  events:
+    - http:
+        path: products
+        method: get
+
+getProductById:
+  handler: src/lambdas/product/getProductById.getProductById
+  events:
+    - http:
+        path: productById/{id}
+        method: get        
+
+createProduct:
+  handler: src/lambdas/product/createProduct.createProduct
+  events:
+    - http:
+        path: products
+        method: post
+
+updateProduct:
+  handler: src/lambdas/product/updateProduct.updateProduct
+  events:
+    - http:
+        path: products/{id}
+        method: put
+
+deleteProduct:
+  handler: src/lambdas/product/deleteProduct.deleteProduct
+  events:
+    - http:
+        path: products/{id}
+        method: delete
+
+uploadProductImage:
+  handler: src/lambdas/product/uploadProductImage.uploadProductImage
+  events:
+    - http:
+        path: products/image
+        method: post

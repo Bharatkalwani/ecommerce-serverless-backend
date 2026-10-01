@@ -1,0 +1,34 @@
+createOrder:
+  handler: src/lambdas/order/createOrder.createOrder
+  events:
+    - http:
+        path: orders
+        method: post
+
+getOrders:
+  handler: src/lambdas/order/getOrders.getOrders
+  events:
+    - http:
+        path: orders
+        method: get
+
+getOrder:
+  handler: src/lambdas/order/getOrder.getOrder
+  events:
+    - http:
+        path: orders/{id}
+        method: get
+
+cancelOrder:
+  handler: src/lambdas/order/cancelOrder.cancelOrder
+  events:
+    - http:
+        path: orders/{id}/cancel
+        method: put
+
+updateOrderStatus:
+  handler: src/lambdas/order/updateOrderStatus.updateOrderStatus
+  events:
+    - http:
+        path: orders/{id}/status
+        method: put

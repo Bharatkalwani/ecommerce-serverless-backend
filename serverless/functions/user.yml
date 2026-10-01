@@ -1,0 +1,27 @@
+register:
+  handler: src/lambdas/user/register.register
+  events:
+    - http:
+        path: register
+        method: post
+
+login:
+  handler: src/lambdas/user/login.login
+  events:
+    - http:
+        path: login
+        method: post
+
+myProfile:
+  handler: src/lambdas/user/myProfile.myProfile
+  events:
+    - http:
+        path: profile
+        method: get
+
+forgotPassword:
+  handler: src/lambdas/user/forgotPassword.forgotPassword
+  events:
+    - http:
+        path: forgot-password
+        method: post

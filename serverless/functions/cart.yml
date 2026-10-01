@@ -1,0 +1,34 @@
+getCart:
+  handler: src/lambdas/cart/getCart.getCart
+  events:
+    - http:
+        path: cart
+        method: get
+
+addToCart:
+  handler: src/lambdas/cart/addToCart.addToCart
+  events:
+    - http:
+        path: cart/items
+        method: post
+
+updateCartItem:
+  handler: src/lambdas/cart/updateCartItem.updateCartItem
+  events:
+    - http:
+        path: cart/items/{id}
+        method: put
+
+removeFromCart:
+  handler: src/lambdas/cart/removeFromCart.removeFromCart
+  events:
+    - http:
+        path: cart/items/{id}
+        method: delete
+
+clearCart:
+  handler: src/lambdas/cart/clearCart.clearCart
+  events:
+    - http:
+        path: cart
+        method: delete

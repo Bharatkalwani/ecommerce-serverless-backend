@@ -1,0 +1,10 @@
+sendOrderEmail:
+  handler: src/lambdas/email/sendOrderEmail.sendOrderEmail
+  timeout: 10
+  events:
+    - sqs:
+        arn:
+          Fn::GetAtt:
+            - OrderEmailQueue
+            - Arn
+        batchSize: 1
